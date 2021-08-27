@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:text="@string/save_text"
         android:layout_margin="8dp"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btShow"
         app:layout_constraintHorizontal_chainStyle="packed"

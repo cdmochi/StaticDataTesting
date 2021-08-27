@@ -3,7 +3,6 @@ package com.cdpete.storagedatatesting
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
-import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import com.cdpete.storagedatatesting.data.DataStatic
 import com.cdpete.storagedatatesting.data.SingletonStatic
@@ -14,7 +13,7 @@ class MainActivity : AppCompatActivity() {
     private var declaredData: String? = null
 
     companion object {
-        private const val STATE_KEY = "state_key"
+        private const val KEY_NAME = "key_name"
     }
 
     private val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
@@ -28,23 +27,22 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
-        super.onSaveInstanceState(outState, outPersistentState)
-        Log.d("saveInstanceState", STATE_KEY)
-        outState.putString(STATE_KEY, savedStateHandleData)
-    }
-
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        savedStateHandleData = savedInstanceState.getString(STATE_KEY)
+        this.savedStateHandleData = savedInstanceState.getString(KEY_NAME)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(KEY_NAME, savedStateHandleData)
     }
 
     private fun onSaveButtonClicked() {
         var dummyData = "CDMOCHI"
-        savedStateHandleData = dummyData
-        declaredData = dummyData
         DataStatic.name = dummyData
         SingletonStatic.name = dummyData
+        savedStateHandleData = dummyData
+        declaredData = dummyData
     }
 
     private fun onShowButtonClicked() {
